@@ -19,15 +19,15 @@ public class Main {
         Connection connection = DB.getConnection();
 
 
-        Department dp = new Department(1,"test");
-        Seller seller = new Seller(1,"Vhenus","fadfads@email.com",LocalDate.of(1999,03,10),2000.00,dp);
+        Department dp = new Department(2,"test");
+        Seller seller = new Seller(4,"Vhenus","fadfads@email.com",LocalDate.of(1999,03,10),2000.00,dp);
 
         DepartmentDao dps = DaoFactory.createDepartmentDao();
         SellerDao sellerDao = DaoFactory.createSellerDao();
 
-        dps.deleteById(1);
+        sellerDao.update(seller);
 
-        System.out.println(sellerDao.findAll());
+        System.out.println(sellerDao.findByDepartmentId(dp));
 
         DB.closeConnection();
 

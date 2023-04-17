@@ -93,9 +93,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
             rs = stm.executeQuery();
 
             if (rs.next()) {
-                int x = rs.getInt("Id");
-                String name = rs.getString("Name");
-                Department dp = new Department(x, name);
+                Department dp = instantiateDepartment(rs);
                 return dp;
             }
             return null;
@@ -119,11 +117,9 @@ public class DepartmentDaoJDBC implements DepartmentDao {
             rs = stm.executeQuery();
 
             while (rs.next()) {
-                int x = rs.getInt("Id");
-                String name = rs.getString("Name");
-
-                Department dp = new Department(x, name);
+                Department dp = instantiateDepartment(rs);
                 list.add(dp);
+
             }
             return list;
 
@@ -134,5 +130,13 @@ public class DepartmentDaoJDBC implements DepartmentDao {
             DB.closeStatement(stm);
         }
 
+    }
+
+    private Department instantiateDepartment(ResultSet rs) throws SQLException {
+        Department dp = new Department();
+        dp.setId(rs.getInt("DepartmentId"));
+        dp.setName(rs.getString("Name"));
+
+        return dp;
     }
 }
