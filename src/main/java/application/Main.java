@@ -3,6 +3,7 @@ package application;
 import db.DB;
 import model.dao.DaoFactory;
 import model.dao.DepartmentDao;
+import model.dao.SellerDao;
 import model.dao.impl.DepartmentDaoJDBC;
 import model.dao.impl.SellerDaoJDBC;
 import model.entities.Department;
@@ -21,11 +22,14 @@ public class Main {
 
 
         Department dp = new Department(1,"test");
-        Seller seller = new Seller(1,"Vhenus","fadfads@email.com", LocalDate.now(),3000.00,dp);
+        Seller seller = new Seller(1,"Vhenus","fadfads@email.com",LocalDate.of(1999,03,10),2000.00,dp);
 
         DepartmentDao dps = DaoFactory.createDepartmentDao();
+        SellerDao sellerDao = DaoFactory.createSellerDao();
 
-        System.out.println(dps.findAll());
+        dps.deleteById(1);
+
+        System.out.println(sellerDao.findAll());
 
         DB.closeConnection();
 
