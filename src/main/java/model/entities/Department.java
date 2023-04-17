@@ -8,7 +8,7 @@ public class Department implements Serializable {
     private Integer id;
     private String Name;
 
-    public Department(){
+    public Department() {
 
     }
 

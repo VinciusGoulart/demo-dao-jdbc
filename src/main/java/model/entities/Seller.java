@@ -1,9 +1,10 @@
 package model.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Seller {
+public class Seller implements Serializable {
 
     private Integer id;
     private String name;
@@ -11,15 +12,19 @@ public class Seller {
     private LocalDate birthday;
     private Double baseSalary;
 
-    public Seller(){
+    private Department department;
+
+    public Seller() {
 
     }
-    public Seller(Integer id, String name, String email, LocalDate birthday, Double baseSalary) {
+
+    public Seller(Integer id, String name, String email, LocalDate birthday, Double baseSalary, Department department) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.birthday = birthday;
         this.baseSalary = baseSalary;
+        this.department = department;
     }
 
     public Integer getId() {
@@ -62,15 +67,34 @@ public class Seller {
         this.baseSalary = baseSalary;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Seller seller)) return false;
-        return getId().equals(seller.getId()) && Objects.equals(getName(), seller.getName()) && Objects.equals(getEmail(), seller.getEmail()) && Objects.equals(getBirthday(), seller.getBirthday()) && Objects.equals(getBaseSalary(), seller.getBaseSalary());
+        return getId().equals(seller.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getEmail(), getBirthday(), getBaseSalary());
+        return Objects.hash(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "Seller: " +
+                "id: " + id +
+                ", name: " + name +
+                ", email: " + email +
+                ", birthday: " + birthday +
+                ", baseSalary: " + baseSalary +
+                ", department: " + department;
     }
 }
