@@ -20,7 +20,7 @@ public class Main {
 
 
         Department dp = new Department(2,"test");
-        Seller seller = new Seller(4,"Vhenus","fadfads@email.com",LocalDate.of(1999,03,10),2000.00,dp);
+        Seller seller = new Seller(4,"Vhenus","fadfads@email.com",LocalDate.of(2015,12,20),2000.00,dp);
 
         DepartmentDao dps = DaoFactory.createDepartmentDao();
         SellerDao sellerDao = DaoFactory.createSellerDao();
